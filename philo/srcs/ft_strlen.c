@@ -1,19 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.h                                            :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yohatana <yohatana@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yoshiko <yoshiko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/11 19:57:40 by yohatana          #+#    #+#             */
-/*   Updated: 2025/04/11 19:58:27 by yohatana         ###   ########.fr       */
+/*   Created: 2024/01/23 16:50:03 by yohatana          #+#    #+#             */
+/*   Updated: 2025/04/16 20:11:16 by yoshiko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_H
-# define PHILO_H
+#include "../includes/philo.h"
 
-#include <stdio.h>
+size_t	ft_strlen(const char *s)
+{
+	size_t	i;
 
-
-#endif
+	if (s == NULL)
+		return (0);
+	i = 0;
+	while (s[i] != 0)
+	{
+		i++;
+	}
+	return (i);
+}
