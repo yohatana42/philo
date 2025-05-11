@@ -6,7 +6,7 @@
 /*   By: yohatana <yohatana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 15:29:02 by yohatana          #+#    #+#             */
-/*   Updated: 2025/05/11 15:29:42 by yohatana         ###   ########.fr       */
+/*   Updated: 2025/05/11 15:44:54 by yohatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,6 @@
 
 int	check_valid_argv(char **argv)
 {
+	(void)argv;
 	return (0);
 }

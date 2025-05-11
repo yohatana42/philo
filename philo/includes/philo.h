@@ -6,7 +6,7 @@
 /*   By: yohatana <yohatana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 15:08:30 by yohatana          #+#    #+#             */
-/*   Updated: 2025/05/11 15:30:06 by yohatana         ###   ########.fr       */
+/*   Updated: 2025/05/11 15:44:09 by yohatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,4 @@ typedef struct	s_table
 // check_valid_argv
 int	check_valid_argv(char **argv);
 
-#endif PHILO_H
+#endif
