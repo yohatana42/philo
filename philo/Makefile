@@ -6,14 +6,17 @@
 #    By: yohatana <yohatana@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/11 15:08:15 by yohatana          #+#    #+#              #
-#    Updated: 2025/05/11 15:43:41 by yohatana         ###   ########.fr        #
+#    Updated: 2025/05/11 16:17:35 by yohatana         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
 SRCS =\
 		src/main.c\
-		src/check_valid_argv.c
+		src/check_valid_argv.c\
+		src/ft_atoi.c\
+		src/ft_calloc.c\
+		src/ft_strlen.c
 OBJS = $(SRCS:.c=.o)
 
 CC = cc

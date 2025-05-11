@@ -6,7 +6,7 @@
 /*   By: yohatana <yohatana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 15:08:30 by yohatana          #+#    #+#             */
-/*   Updated: 2025/05/11 15:44:09 by yohatana         ###   ########.fr       */
+/*   Updated: 2025/05/11 16:20:38 by yohatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@
 # include <stdio.h>
 # include <pthread.h>
 # include <stdlib.h>
+# include <unistd.h>
+# include <limits.h>
+# include <stdint.h>
 
 typedef struct	s_philo
 {
@@ -40,5 +43,10 @@ typedef struct	s_table
 
 // check_valid_argv
 int	check_valid_argv(char **argv);
+
+// utils
+int	ft_atoi(const char *str);
+void	*ft_calloc(size_t count, size_t size);
+size_t	ft_strlen(const char *s);
 
 #endif
