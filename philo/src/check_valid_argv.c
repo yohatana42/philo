@@ -1,27 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   check_valid_argv.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoshiko <yoshiko@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yohatana <yohatana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/23 16:50:03 by yohatana          #+#    #+#             */
-/*   Updated: 2025/04/16 20:11:16 by yoshiko          ###   ########.fr       */
+/*   Created: 2025/05/11 15:29:02 by yohatana          #+#    #+#             */
+/*   Updated: 2025/05/11 15:29:42 by yohatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/philo.h"
+# include "../includes/philo.h"
 
-size_t	ft_strlen(const char *s)
+int	check_valid_argv(char **argv)
 {
-	size_t	i;
-
-	if (s == NULL)
-		return (0);
-	i = 0;
-	while (s[i] != 0)
-	{
-		i++;
-	}
-	return (i);
+	return (0);
 }
