@@ -6,7 +6,7 @@
 /*   By: yohatana <yohatana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 18:06:26 by yohatana          #+#    #+#             */
-/*   Updated: 2025/05/12 18:09:11 by yohatana         ###   ########.fr       */
+/*   Updated: 2025/05/12 18:17:41 by yohatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,3 +23,8 @@ void	*routine_philo(void *arg)
 	// sleep_philo();
 	return (arg);
 }
+
+// static void	sleep_philo()
+// {
+// 	// 指定した時間寝る
+// }
