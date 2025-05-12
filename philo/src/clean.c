@@ -1,28 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.h                                            :+:      :+:    :+:   */
+/*   clean.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yohatana <yohatana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/11 15:08:30 by yohatana          #+#    #+#             */
-/*   Updated: 2025/05/12 18:09:21 by yohatana         ###   ########.fr       */
+/*   Created: 2025/05/12 16:56:49 by yohatana          #+#    #+#             */
+/*   Updated: 2025/05/12 17:28:51 by yohatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_H
-# define PHILO_H
+#include "../includes/philo.h"
 
-# include <stdio.h>
-# include <pthread.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <limits.h>
-# include <stdint.h>
-
-# define PHILO_MAX 200
-
-typedef struct	s_philo
+/*
+	typedef struct	s_philo
 {
 	pthread_t		thread;
 	int				id;
@@ -44,28 +35,28 @@ typedef struct	s_table
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	write_lock;
 }	t_table;
+*/
+void	clean_all(t_table *table)
+{
+	if (pthread_mutex_destroy(&table->write_lock) != 0)
+		print_message("failed: mutex destroy\n", NULL);
+	clean_fork(table->forks, table);
+}
 
-// check_valid_argv
-int		check_valid_argv(char **argv);
+void	clean_fork(pthread_mutex_t *forks, t_table *table)
+{
+	int	i;
 
-// init
-int		init_table(int argc, char **argv, t_table *table);
+	i = 0;
+	while (i < table->num_of_philo)
+	{
+		if (pthread_mutex_destroy(&forks[i]) != 0)
+			print_message("failed: mutex destroy\n", NULL);
+		i++;
+	}
+}
 
-// create_threads
-int		create_threads(t_table *table);
+// void	clean_philos(t_philo *philos)
+// {
 
-// clean
-void	clean_all(t_table *table);
-void	clean_fork(pthread_mutex_t *forks, t_table *table);
-
-// routine
-void	*routine_monitor(void *table);
-void	*routine_philo(void *arg);
-
-// utils
-int		ft_atoi(const char *str);
-void	*ft_calloc(size_t count, size_t size);
-size_t	ft_strlen(const char *s);
-void	print_message(char *str, t_table *table);
-
-#endif
+// }

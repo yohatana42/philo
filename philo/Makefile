@@ -6,7 +6,7 @@
 #    By: yohatana <yohatana@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/11 15:08:15 by yohatana          #+#    #+#              #
-#    Updated: 2025/05/11 16:17:35 by yohatana         ###   ########.fr        #
+#    Updated: 2025/05/12 18:09:51 by yohatana         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,13 @@ SRCS =\
 		src/check_valid_argv.c\
 		src/ft_atoi.c\
 		src/ft_calloc.c\
-		src/ft_strlen.c
+		src/ft_strlen.c\
+		src/init_table.c\
+		src/utils.c\
+		src/create_threads.c\
+		src/clean.c\
+		src/routine_monitor.c\
+		src/routine_philo.c
 OBJS = $(SRCS:.c=.o)
 
 CC = cc
