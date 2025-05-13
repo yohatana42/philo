@@ -6,7 +6,7 @@
 /*   By: yohatana <yohatana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 16:35:43 by yohatana          #+#    #+#             */
-/*   Updated: 2025/05/12 17:38:47 by yohatana         ###   ########.fr       */
+/*   Updated: 2025/05/13 15:37:53 by yohatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ static void	init_philos(t_philo *philos, \
 			philos[i].l_fork = &forks[i - 1];
 		philos[i].write_lock = &table->write_lock;
 		philos[i].dead_flg = 0;
+		philos[i].table = table;
 		i++;
 	}
 	table->philos = philos;
