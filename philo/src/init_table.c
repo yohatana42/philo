@@ -6,7 +6,7 @@
 /*   By: yohatana <yohatana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 16:35:43 by yohatana          #+#    #+#             */
-/*   Updated: 2025/05/13 15:37:53 by yohatana         ###   ########.fr       */
+/*   Updated: 2025/05/15 13:42:19 by yohatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ int	init_table(int argc, char **argv, t_table *table)
 	else
 		table->num_of_philo_must_eat = -1;
 	if (pthread_mutex_init(&table->write_lock, NULL) != 0)
+		return (1);
+	if (pthread_mutex_init(&table->table_lock, NULL) != 0)
 		return (1);
 	if (init_forks(forks, table))
 	{

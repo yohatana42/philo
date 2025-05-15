@@ -6,7 +6,7 @@
 /*   By: yohatana <yohatana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 17:46:07 by yohatana          #+#    #+#             */
-/*   Updated: 2025/05/13 16:17:52 by yohatana         ###   ########.fr       */
+/*   Updated: 2025/05/15 14:23:23 by yohatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static int	check_dead(t_table *table)
 	printf("check_dead\n");
 	while (i < table->num_of_philo)
 	{
-		if (table->philos[i].last_meal_time > (size_t)table->time_to_die)
+		if (table->start - table->philos[i].last_meal_time > (size_t)table->time_to_die)
 		{
 			table->philos[i].dead_flg = 1;
 		}

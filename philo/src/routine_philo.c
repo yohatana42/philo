@@ -6,7 +6,7 @@
 /*   By: yohatana <yohatana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 18:06:26 by yohatana          #+#    #+#             */
-/*   Updated: 2025/05/13 16:10:44 by yohatana         ###   ########.fr       */
+/*   Updated: 2025/05/15 13:54:01 by yohatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	*routine_philo(void *arg)
 
 	philo = (t_philo *)arg;
 	printf("id: %d this is philo\n", philo->id);
+	// ここですべてのスレッドを待つ
 	while (!check_dead(philo))
 	{
 		eat(philo);
@@ -40,6 +41,7 @@ static void	eat(t_philo *philo)
 	if (philo->table->num_of_philo == 1)
 	{
 		pthread_mutex_unlock(philo->l_fork);
+		ft_usleep(philo->table->time_to_die);
 		return ;
 	}
 	if (philo->id % 2 == 0)

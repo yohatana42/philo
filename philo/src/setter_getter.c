@@ -1,31 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   start_dinner.c                                     :+:      :+:    :+:   */
+/*   setter_getter.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yohatana <yohatana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/13 16:18:42 by yohatana          #+#    #+#             */
-/*   Updated: 2025/05/15 14:24:55 by yohatana         ###   ########.fr       */
+/*   Created: 2025/05/15 14:14:53 by yohatana          #+#    #+#             */
+/*   Updated: 2025/05/15 14:27:41 by yohatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-static int	wait_all_threads(t_table *table);
-
-void	start_dinner(t_table *table)
+void	set_bool(pthread_mutex_t *mutex, bool *dest, bool value)
 {
-	(void)table;
-	printf("start dinner\n");
-	// すべてのスレッドを待つ
-	table->start = get_current_time();
-	// 開始時刻の設定
-	// 死ぬか満足したら終わる
+	pthread_mutex_lock(mutex);
+	*dest = value;
+	pthread_mutex_unlock(mutex);
 }
 
-// table->table_lock
-static int	wait_all_threads(t_table *table)
+bool	get_bool(pthread_mutex_t *mutex, bool *value)
 {
-	return (0);
+	bool	ret;
+
+	pthread_mutex_lock(mutex);
+	ret = *value;
+	pthread_mutex_unlock(mutex);
+	return (ret);
 }
