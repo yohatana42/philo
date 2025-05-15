@@ -6,7 +6,7 @@
 /*   By: yohatana <yohatana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 15:08:22 by yohatana          #+#    #+#             */
-/*   Updated: 2025/05/12 17:36:19 by yohatana         ###   ########.fr       */
+/*   Updated: 2025/05/15 15:02:38 by yohatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ int	main(int argc, char **argv)
 		write(2, "failed: init table data\n", 20);
 		return (1);
 	}
+	// tableがちゃんと渡されてなさそう
+	printf("main table %p\n", &table);
 	create_threads(&table);
 	// wait threads
 	// start dinner

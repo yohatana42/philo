@@ -6,7 +6,7 @@
 /*   By: yohatana <yohatana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 16:35:43 by yohatana          #+#    #+#             */
-/*   Updated: 2025/05/15 13:42:19 by yohatana         ###   ########.fr       */
+/*   Updated: 2025/05/15 14:39:46 by yohatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ static void	init_philos(t_philo *philos, \
 	{
 		philos[i].id = i + 1;
 		philos[i].count_eat = 0;
+		philos[i].last_meal_time = 0;
 		philos[i].r_fork = &forks[i];
 		if (i == 0)
 			philos[i].l_fork = &forks[table->num_of_philo - 1];

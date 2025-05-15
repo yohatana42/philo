@@ -6,7 +6,7 @@
 /*   By: yohatana <yohatana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 18:21:03 by yohatana          #+#    #+#             */
-/*   Updated: 2025/05/15 14:23:51 by yohatana         ###   ########.fr       */
+/*   Updated: 2025/05/15 15:03:39 by yohatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,9 @@ int	create_threads(t_table *table)
 	pthread_t	monitor;
 	int			i;
 
+	printf("create threads table &%p\n", table);
 	i = 0;
-	if (pthread_create(&monitor, NULL, &routine_monitor, NULL) != 0)
+	if (pthread_create(&monitor, NULL, &routine_monitor, table) != 0)
 	{
 		print_message("failed: thread create\n", table);
 		return (1);
