@@ -6,7 +6,7 @@
 /*   By: yohatana <yohatana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 16:35:43 by yohatana          #+#    #+#             */
-/*   Updated: 2025/05/16 17:02:01 by yohatana         ###   ########.fr       */
+/*   Updated: 2025/05/16 18:39:52 by yohatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ static void	init_philos(t_philo *philos, \
 		philos[i].meal_lock = &table->meal_lock;
 		philos[i].dead_flg = false;
 		philos[i].full = false;
+		philos[i].eating = false;
 		philos[i].table = table;
 		i++;
 	}

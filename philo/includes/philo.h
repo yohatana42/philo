@@ -6,7 +6,7 @@
 /*   By: yohatana <yohatana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 15:08:30 by yohatana          #+#    #+#             */
-/*   Updated: 2025/05/16 17:38:32 by yohatana         ###   ########.fr       */
+/*   Updated: 2025/05/16 18:39:36 by yohatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@
 
 # define PHILO_MAX 200
 
-typedef struct	s_table t_table;
+typedef struct s_table	t_table;
 
-typedef struct	s_philo
+typedef struct s_philo
 {
 	pthread_t		thread;
 	int				id;
@@ -38,10 +38,11 @@ typedef struct	s_philo
 	pthread_mutex_t	*meal_lock;
 	bool			dead_flg;
 	bool			full;
+	bool			eating;
 	t_table			*table;
 }	t_philo;
 
-typedef struct	s_table
+typedef struct s_table
 {
 	int				num_of_philo;
 	int				time_to_die;

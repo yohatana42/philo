@@ -6,7 +6,7 @@
 /*   By: yohatana <yohatana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 16:56:49 by yohatana          #+#    #+#             */
-/*   Updated: 2025/05/16 17:52:27 by yohatana         ###   ########.fr       */
+/*   Updated: 2025/05/16 18:02:49 by yohatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,3 @@ void	clean_fork(pthread_mutex_t *forks, t_table *table)
 		i++;
 	}
 }
-
-// void	clean_philos(t_philo *philos)
-// {
-
-// }
