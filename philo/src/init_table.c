@@ -6,7 +6,7 @@
 /*   By: yohatana <yohatana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 16:35:43 by yohatana          #+#    #+#             */
-/*   Updated: 2025/05/15 14:39:46 by yohatana         ###   ########.fr       */
+/*   Updated: 2025/05/16 17:02:01 by yohatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,21 @@ int	init_table(int argc, char **argv, t_table *table)
 	(void)argc;
 	table->num_of_philo = ft_atoi(argv[1]);
 	table->time_to_die = ft_atoi(argv[2]);
-	table->time_to_die = ft_atoi(argv[3]);
+	table->time_to_eat = ft_atoi(argv[3]);
 	table->time_to_sleep = ft_atoi(argv[4]);
 	if (argv[5])
 		table->num_of_philo_must_eat = ft_atoi(argv[5]);
 	else
 		table->num_of_philo_must_eat = -1;
+	table->dead_flg = false;
+	table->is_ready = false;
 	if (pthread_mutex_init(&table->write_lock, NULL) != 0)
 		return (1);
 	if (pthread_mutex_init(&table->table_lock, NULL) != 0)
+		return (1);
+	if (pthread_mutex_init(&table->dead_lock, NULL) != 0)
+		return (1);
+	if (pthread_mutex_init(&table->meal_lock, NULL) != 0)
 		return (1);
 	if (init_forks(forks, table))
 	{
@@ -80,7 +86,9 @@ static void	init_philos(t_philo *philos, \
 		else
 			philos[i].l_fork = &forks[i - 1];
 		philos[i].write_lock = &table->write_lock;
-		philos[i].dead_flg = 0;
+		philos[i].meal_lock = &table->meal_lock;
+		philos[i].dead_flg = false;
+		philos[i].full = false;
 		philos[i].table = table;
 		i++;
 	}

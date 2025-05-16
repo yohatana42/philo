@@ -6,7 +6,7 @@
 /*   By: yohatana <yohatana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 15:08:30 by yohatana          #+#    #+#             */
-/*   Updated: 2025/05/15 14:25:43 by yohatana         ###   ########.fr       */
+/*   Updated: 2025/05/16 17:38:32 by yohatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,9 @@ typedef struct	s_philo
 	pthread_mutex_t	*r_fork;
 	pthread_mutex_t	*l_fork;
 	pthread_mutex_t	*write_lock;
-	int				dead_flg;
+	pthread_mutex_t	*meal_lock;
+	bool			dead_flg;
+	bool			full;
 	t_table			*table;
 }	t_philo;
 
@@ -50,7 +52,11 @@ typedef struct	s_table
 	t_philo			*philos;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	write_lock;
+	pthread_mutex_t	meal_lock;
 	pthread_mutex_t	table_lock;
+	bool			is_ready;
+	pthread_mutex_t	dead_lock;
+	bool			dead_flg;
 }	t_table;
 
 // check_valid_argv
@@ -69,13 +75,6 @@ void	clean_fork(pthread_mutex_t *forks, t_table *table);
 // routine
 void	*routine_monitor(void *table);
 void	*routine_philo(void *arg);
-
-// start dinner
-void	start_dinner(t_table *table);
-
-// setter_getter
-void	set_bool(pthread_mutex_t *mutex, bool *dest, bool value);
-bool	get_bool(pthread_mutex_t *mutex, bool *value);
 
 // utils
 int		ft_atoi(const char *str);

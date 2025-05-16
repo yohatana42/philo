@@ -6,16 +6,12 @@
 /*   By: yohatana <yohatana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 15:08:22 by yohatana          #+#    #+#             */
-/*   Updated: 2025/05/15 15:02:38 by yohatana         ###   ########.fr       */
+/*   Updated: 2025/05/16 14:54:38 by yohatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../includes/philo.h"
 
-// まずは一人で死ぬ哲学者を作ろう
-// 二人で死ぬ哲学者
-// 二人で生きる哲学者
-// 三人で生きる哲学者、死ぬ哲学者
 int	main(int argc, char **argv)
 {
 	t_table	table;
@@ -32,11 +28,7 @@ int	main(int argc, char **argv)
 		write(2, "failed: init table data\n", 20);
 		return (1);
 	}
-	// tableがちゃんと渡されてなさそう
-	printf("main table %p\n", &table);
 	create_threads(&table);
-	// wait threads
-	// start dinner
 	clean_all(&table);
 	return (0);
 }
