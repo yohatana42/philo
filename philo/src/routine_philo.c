@@ -6,7 +6,7 @@
 /*   By: yohatana <yohatana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 18:06:26 by yohatana          #+#    #+#             */
-/*   Updated: 2025/05/18 12:35:04 by yohatana         ###   ########.fr       */
+/*   Updated: 2025/05/18 16:08:47 by yohatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,25 +24,26 @@ void	*routine_philo(void *arg)
 	philo = (t_philo *)arg;
 	while (philo->table->is_ready != true)
 		;
-	if (philo->id % 2 == 1)
-	{
-		ft_usleep(1);
-	}
 	while (!check_dead(philo))
 	{
 		eat(philo);
-		think(philo);
 		sleep_philo(philo);
+		think(philo);
 	}
 	return (arg);
 }
 
 static void	eat(t_philo *philo)
 {
+	if (check_dead(philo))
+		return ;
 	if (philo->id % 2 == 0)
 		pthread_mutex_lock(philo->r_fork);
 	else
+	{
+		ft_usleep(1);
 		pthread_mutex_lock(philo->l_fork);
+	}
 	print_log(philo->write_lock, philo, "has taken a fork");
 	if (philo->table->num_of_philo == 1)
 	{

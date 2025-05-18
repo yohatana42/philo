@@ -6,7 +6,7 @@
 /*   By: yohatana <yohatana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 18:21:03 by yohatana          #+#    #+#             */
-/*   Updated: 2025/05/16 18:00:25 by yohatana         ###   ########.fr       */
+/*   Updated: 2025/05/18 18:22:52 by yohatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	create_threads(t_table *table)
 	}
 	while (i < table->num_of_philo)
 	{
-		if (pthread_create(&table->philos[i].thread, NULL, \
+		if (pthread_create(&table->philos[i]->thread, NULL, \
 							&routine_philo, &table->philos[i]) != 0)
 		{
 			print_message("failed: thread create\n", table);
@@ -51,7 +51,7 @@ static int	all_thread_join(t_table *table, pthread_t *monitor)
 	i = 0;
 	while (i < table->num_of_philo)
 	{
-		if (pthread_join(table->philos[i].thread, NULL) != 0)
+		if (pthread_join(table->philos[i]->thread, NULL) != 0)
 		{
 			print_message("failed: thread join\n", table);
 			return (1);

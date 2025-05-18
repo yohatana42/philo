@@ -6,7 +6,7 @@
 /*   By: yohatana <yohatana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 15:08:30 by yohatana          #+#    #+#             */
-/*   Updated: 2025/05/18 11:53:28 by yohatana         ###   ########.fr       */
+/*   Updated: 2025/05/18 18:24:24 by yohatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,10 @@
 # include <limits.h>
 # include <stdint.h>
 # include <sys/time.h>
+# include <sys/types.h>
 # include <stdbool.h>
 
-# define PHILO_MAX 200
+# define PHILO_MAX 250
 
 typedef struct s_table		t_table;
 
@@ -57,21 +58,21 @@ typedef struct s_table
 	int				time_to_sleep;
 	int				num_of_philo_must_eat;
 	size_t			start;
-	t_philo			*philos;
-	pthread_mutex_t	*forks;
+	t_philo			**philos;
+	t_monitor		*monitor;
+	pthread_mutex_t	**forks;
 	pthread_mutex_t	write_lock;
 	pthread_mutex_t	meal_lock;
 	pthread_mutex_t	table_lock;
 	bool			is_ready;
 	pthread_mutex_t	dead_lock;
-	t_monitor		*monitor;
 }	t_table;
 
 // check_valid_argv
 int		check_valid_argv(char **argv);
 
 // init
-int		init_table(int argc, char **argv, t_table *table);
+int		init_table(char **argv, t_table *table);
 
 // create_threads
 int		create_threads(t_table *table);

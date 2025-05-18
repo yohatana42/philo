@@ -6,7 +6,7 @@
 /*   By: yohatana <yohatana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 15:08:22 by yohatana          #+#    #+#             */
-/*   Updated: 2025/05/18 11:56:03 by yohatana         ###   ########.fr       */
+/*   Updated: 2025/05/18 18:46:13 by yohatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	main(int argc, char **argv)
 {
-	t_table	table;
+	t_table			table;
 
 	if (argc != 5 && argc != 6)
 	{
@@ -23,13 +23,13 @@ int	main(int argc, char **argv)
 	}
 	if (check_valid_argv(argv))
 		return (1);
-	if (init_table(argc, argv, &table))
+	if (init_table(argv, &table))
 	{
 		write(2, "failed: init table data\n", 20);
 		clean_all(&table);
 		return (1);
 	}
-	create_threads(&table);
-	clean_all(&table);
+	// create_threads(&table);
+	// clean_all(&table);
 	return (0);
 }

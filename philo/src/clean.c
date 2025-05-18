@@ -6,7 +6,7 @@
 /*   By: yohatana <yohatana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 16:56:49 by yohatana          #+#    #+#             */
-/*   Updated: 2025/05/18 11:56:30 by yohatana         ###   ########.fr       */
+/*   Updated: 2025/05/18 18:30:56 by yohatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,26 @@
 void	clean_all(t_table *table)
 {
 	if (pthread_mutex_destroy(&table->meal_lock) != 0)
-		write(2, "failed: mutex destroy\n", 23);
+		write(2, "failed: mutex destroy meal_lock\n", 33);
 	if (pthread_mutex_destroy(&table->dead_lock) != 0)
-		write(2, "failed: mutex destroy\n", 23);
+		write(2, "failed: mutex destroy dead_lock\n", 33);
 	if (pthread_mutex_destroy(&table->table_lock) != 0)
-		write(2, "failed: mutex destroy\n", 23);
+		write(2, "failed: mutex destroy table_lock\n", 34);
 	if (pthread_mutex_destroy(&table->write_lock) != 0)
-		write(2, "failed: mutex destroy\n", 23);
-	clean_fork(table->forks, table);
+		write(2, "failed: mutex destroy write_lock\n", 34);
+	clean_fork(*table->forks, table);
 }
 
 void	clean_fork(pthread_mutex_t *forks, t_table *table)
 {
 	int	i;
 
+	(void)forks;
 	i = 0;
 	while (i < table->num_of_philo)
 	{
-		if (pthread_mutex_destroy(&forks[i]) != 0)
-			write(2, "failed: mutex destroy\n", 23);
+		if (pthread_mutex_destroy(&table->forks[i]) != 0)
+			write(2, "failed: mutex destroy fork\n", 28);
 		i++;
 	}
 }
