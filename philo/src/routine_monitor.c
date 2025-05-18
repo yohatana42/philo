@@ -6,7 +6,7 @@
 /*   By: yohatana <yohatana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 17:46:07 by yohatana          #+#    #+#             */
-/*   Updated: 2025/05/16 18:41:23 by yohatana         ###   ########.fr       */
+/*   Updated: 2025/05/18 12:15:17 by yohatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,8 @@ void	*routine_monitor(void *arg)
 	while (1)
 	{
 		if (is_someone_dead(table) || is_all_philo_full(table))
-		{
-			table->dead_flg = true;
-			pthread_mutex_lock(&table->meal_lock);
-			pthread_mutex_lock(&table->dead_lock);
 			break ;
-		}
 	}
-	pthread_mutex_unlock(&table->meal_lock);
-	pthread_mutex_unlock(&table->dead_lock);
 	return (arg);
 }
 
@@ -45,11 +38,12 @@ static int	is_someone_dead(t_table *table)
 	while (i < table->num_of_philo)
 	{
 		pthread_mutex_lock(&table->meal_lock);
-		if ((get_current_time() - table->start) - table->philos[i].last_meal_time \
-			>= (size_t)table->time_to_die && table->philos[i].eating)
+		if (get_current_time() - table->start - table->philos[i].last_meal_time \
+			>= (size_t)table->time_to_die)
 		{
-			table->philos[i].dead_flg = true;
-			table->dead_flg = true;
+			pthread_mutex_lock(&table->dead_lock);
+			table->monitor->is_someone_died = true;
+			pthread_mutex_unlock(&table->dead_lock);
 			print_log(&table->write_lock, &table->philos[i], "died");
 			pthread_mutex_unlock(&table->meal_lock);
 			return (1);
@@ -60,6 +54,7 @@ static int	is_someone_dead(t_table *table)
 	return (0);
 }
 
+// table->num_of_must_eatを参照してない
 static int	is_all_philo_full(t_table *table)
 {
 	int	i;

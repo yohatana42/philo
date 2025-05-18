@@ -6,7 +6,7 @@
 /*   By: yohatana <yohatana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 15:08:30 by yohatana          #+#    #+#             */
-/*   Updated: 2025/05/16 18:39:36 by yohatana         ###   ########.fr       */
+/*   Updated: 2025/05/18 11:53:28 by yohatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 
 # define PHILO_MAX 200
 
-typedef struct s_table	t_table;
+typedef struct s_table		t_table;
 
 typedef struct s_philo
 {
@@ -36,11 +36,18 @@ typedef struct s_philo
 	pthread_mutex_t	*l_fork;
 	pthread_mutex_t	*write_lock;
 	pthread_mutex_t	*meal_lock;
-	bool			dead_flg;
 	bool			full;
-	bool			eating;
 	t_table			*table;
 }	t_philo;
+
+typedef struct s_monitor
+{
+	pthread_mutex_t	*write_lock;
+	pthread_mutex_t	*meal_lock;
+	pthread_mutex_t	*dead_lock;
+	pthread_mutex_t	*table_lock;
+	bool			is_someone_died;
+}	t_monitor;
 
 typedef struct s_table
 {
@@ -57,7 +64,7 @@ typedef struct s_table
 	pthread_mutex_t	table_lock;
 	bool			is_ready;
 	pthread_mutex_t	dead_lock;
-	bool			dead_flg;
+	t_monitor		*monitor;
 }	t_table;
 
 // check_valid_argv

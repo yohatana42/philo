@@ -6,7 +6,7 @@
 /*   By: yohatana <yohatana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 18:06:26 by yohatana          #+#    #+#             */
-/*   Updated: 2025/05/16 18:40:25 by yohatana         ###   ########.fr       */
+/*   Updated: 2025/05/18 12:35:04 by yohatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,10 @@ void	*routine_philo(void *arg)
 	philo = (t_philo *)arg;
 	while (philo->table->is_ready != true)
 		;
+	if (philo->id % 2 == 1)
+	{
+		ft_usleep(1);
+	}
 	while (!check_dead(philo))
 	{
 		eat(philo);
@@ -53,22 +57,25 @@ static void	eat(t_philo *philo)
 	print_log(philo->write_lock, philo, "has taken a fork");
 	print_log(philo->write_lock, philo, "is eating");
 	pthread_mutex_lock(&philo->table->meal_lock);
-	philo->eating = true;
 	philo->last_meal_time = get_current_time() - philo->table->start;
-	pthread_mutex_unlock(&philo->table->meal_lock);
-	ft_usleep(philo->table->time_to_eat);
-	philo->eating = false;
 	philo->count_eat = philo->count_eat + 1;
 	if (philo->count_eat == philo->table->num_of_philo_must_eat)
 		philo->full = true;
+	pthread_mutex_unlock(&philo->table->meal_lock);
+	ft_usleep(philo->table->time_to_eat);
 	pthread_mutex_unlock(philo->r_fork);
 	pthread_mutex_unlock(philo->l_fork);
 }
 
 static int	check_dead(t_philo *philo)
 {
-	if (philo->table->dead_flg == true)
+	pthread_mutex_lock(&philo->table->dead_lock);
+	if (philo->table->monitor->is_someone_died == true)
+	{
+		pthread_mutex_unlock(&philo->table->dead_lock);
 		return (1);
+	}
+	pthread_mutex_unlock(&philo->table->dead_lock);
 	return (0);
 }
 

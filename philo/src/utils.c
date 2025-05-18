@@ -6,7 +6,7 @@
 /*   By: yohatana <yohatana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 17:22:30 by yohatana          #+#    #+#             */
-/*   Updated: 2025/05/16 19:23:42 by yohatana         ###   ########.fr       */
+/*   Updated: 2025/05/16 19:33:10 by yohatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ void	print_log(pthread_mutex_t *write_lock, t_philo *philo, char *str)
 {
 	size_t	timestamp;
 
-	// 死んだら出さない
 	pthread_mutex_lock(write_lock);
 	timestamp = get_current_time() - philo->table->start;
 	printf("%zu %d %s\n", timestamp, philo->id, str);

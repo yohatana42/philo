@@ -6,7 +6,7 @@
 /*   By: yohatana <yohatana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 15:08:22 by yohatana          #+#    #+#             */
-/*   Updated: 2025/05/16 18:02:25 by yohatana         ###   ########.fr       */
+/*   Updated: 2025/05/18 11:56:03 by yohatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int	main(int argc, char **argv)
 	if (init_table(argc, argv, &table))
 	{
 		write(2, "failed: init table data\n", 20);
+		clean_all(&table);
 		return (1);
 	}
 	create_threads(&table);

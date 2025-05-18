@@ -6,7 +6,7 @@
 /*   By: yohatana <yohatana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 16:35:43 by yohatana          #+#    #+#             */
-/*   Updated: 2025/05/16 18:39:52 by yohatana         ###   ########.fr       */
+/*   Updated: 2025/05/18 12:37:43 by yohatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,13 @@ static int	init_forks(pthread_mutex_t *forks, t_table *table);
 static void	init_philos(t_philo *philos, \
 						pthread_mutex_t *forks, \
 						t_table *table);
+static void	init_monitor(t_monitor *monitor, t_table *table);
 
 int	init_table(int argc, char **argv, t_table *table)
 {
 	t_philo			philos[PHILO_MAX];
 	pthread_mutex_t	forks[PHILO_MAX];
+	t_monitor		monitor;
 
 	(void)argc;
 	table->num_of_philo = ft_atoi(argv[1]);
@@ -31,7 +33,6 @@ int	init_table(int argc, char **argv, t_table *table)
 		table->num_of_philo_must_eat = ft_atoi(argv[5]);
 	else
 		table->num_of_philo_must_eat = -1;
-	table->dead_flg = false;
 	table->is_ready = false;
 	if (pthread_mutex_init(&table->write_lock, NULL) != 0)
 		return (1);
@@ -42,11 +43,9 @@ int	init_table(int argc, char **argv, t_table *table)
 	if (pthread_mutex_init(&table->meal_lock, NULL) != 0)
 		return (1);
 	if (init_forks(forks, table))
-	{
-		clean_all(table);
 		return (1);
-	}
 	init_philos(philos, forks, table);
+	init_monitor(&monitor, table);
 	return (0);
 }
 
@@ -87,11 +86,19 @@ static void	init_philos(t_philo *philos, \
 			philos[i].l_fork = &forks[i - 1];
 		philos[i].write_lock = &table->write_lock;
 		philos[i].meal_lock = &table->meal_lock;
-		philos[i].dead_flg = false;
 		philos[i].full = false;
-		philos[i].eating = false;
 		philos[i].table = table;
 		i++;
 	}
 	table->philos = philos;
+}
+
+static void	init_monitor(t_monitor *monitor, t_table *table)
+{
+	monitor->write_lock = &table->write_lock;
+	monitor->meal_lock = &table->meal_lock;
+	monitor->dead_lock = &table->dead_lock;
+	monitor->table_lock = &table->table_lock;
+	monitor->is_someone_died = false;
+	table->monitor = monitor;
 }
