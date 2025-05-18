@@ -6,7 +6,7 @@
 /*   By: yohatana <yohatana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 15:08:30 by yohatana          #+#    #+#             */
-/*   Updated: 2025/05/18 18:24:24 by yohatana         ###   ########.fr       */
+/*   Updated: 2025/05/18 20:43:34 by yohatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,17 @@ int		create_threads(t_table *table);
 
 // clean
 void	clean_all(t_table *table);
-void	clean_fork(pthread_mutex_t *forks, t_table *table);
+// void	clean_fork(pthread_mutex_t *forks, t_table *table);
+
+// struct
+int		create_struct(t_table *table, char **argv);
+// void	free_struct(t_table *table, \
+// 	pthread_mutex_t **forks, \
+// 	t_philo **philos, \
+// 	t_monitor *monitor);
+void	free_struct(t_table *table);
+void	free_philos(t_philo **philos);
+void	free_forks(pthread_mutex_t **forks);
 
 // routine
 void	*routine_monitor(void *table);

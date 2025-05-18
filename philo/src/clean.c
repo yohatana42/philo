@@ -6,11 +6,13 @@
 /*   By: yohatana <yohatana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 16:56:49 by yohatana          #+#    #+#             */
-/*   Updated: 2025/05/18 18:30:56 by yohatana         ###   ########.fr       */
+/*   Updated: 2025/05/18 19:08:25 by yohatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
+
+static void	clean_fork(t_table *table);
 
 void	clean_all(t_table *table)
 {
@@ -22,18 +24,17 @@ void	clean_all(t_table *table)
 		write(2, "failed: mutex destroy table_lock\n", 34);
 	if (pthread_mutex_destroy(&table->write_lock) != 0)
 		write(2, "failed: mutex destroy write_lock\n", 34);
-	clean_fork(*table->forks, table);
+	clean_fork(table);
 }
 
-void	clean_fork(pthread_mutex_t *forks, t_table *table)
+static void	clean_fork(t_table *table)
 {
 	int	i;
 
-	(void)forks;
 	i = 0;
 	while (i < table->num_of_philo)
 	{
-		if (pthread_mutex_destroy(&table->forks[i]) != 0)
+		if (pthread_mutex_destroy(table->forks[i]) != 0)
 			write(2, "failed: mutex destroy fork\n", 28);
 		i++;
 	}

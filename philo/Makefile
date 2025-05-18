@@ -6,7 +6,7 @@
 #    By: yohatana <yohatana@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/11 15:08:15 by yohatana          #+#    #+#              #
-#    Updated: 2025/05/16 19:45:56 by yohatana         ###   ########.fr        #
+#    Updated: 2025/05/18 19:38:41 by yohatana         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,9 @@ SRCS =\
 		src/create_threads.c\
 		src/clean.c\
 		src/routine_monitor.c\
-		src/routine_philo.c
+		src/routine_philo.c\
+		src/create_struct.c\
+		src/free_struct.c
 OBJS = $(SRCS:.c=.o)
 
 CC = cc
