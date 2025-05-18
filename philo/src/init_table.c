@@ -6,20 +6,15 @@
 /*   By: yohatana <yohatana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 16:35:43 by yohatana          #+#    #+#             */
-/*   Updated: 2025/05/18 20:45:12 by yohatana         ###   ########.fr       */
+/*   Updated: 2025/05/18 20:47:47 by yohatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-// static int	init_forks(pthread_mutex_t *forks, t_table *table);
-// static void	init_philos(t_philo *philos, \
-// 						pthread_mutex_t *forks, \
-// 						t_table *table);
-// static void	init_monitor(t_monitor *monitor, t_table *table);
-int	init_forks(t_table *table);
-int	init_philos(t_table *table);
-int	init_monitor(t_table *table);
+static int	init_forks(t_table *table);
+static int	init_philos(t_table *table);
+static int	init_monitor(t_table *table);
 
 int	init_table(char **argv, t_table *table)
 {
@@ -39,7 +34,7 @@ int	init_table(char **argv, t_table *table)
 	return (0);
 }
 
-int	init_forks(t_table *table)
+static int	init_forks(t_table *table)
 {
 	int	i;
 
@@ -53,7 +48,7 @@ int	init_forks(t_table *table)
 	return (0);
 }
 
-int	init_philos(t_table *table)
+static int	init_philos(t_table *table)
 {
 	int		i;
 
@@ -77,7 +72,7 @@ int	init_philos(t_table *table)
 	return (0);
 }
 
-int	init_monitor(t_table *table)
+static int	init_monitor(t_table *table)
 {
 	table->monitor->write_lock = &table->write_lock;
 	table->monitor->meal_lock = &table->meal_lock;

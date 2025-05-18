@@ -6,7 +6,7 @@
 /*   By: yohatana <yohatana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 15:08:22 by yohatana          #+#    #+#             */
-/*   Updated: 2025/05/18 20:46:10 by yohatana         ###   ########.fr       */
+/*   Updated: 2025/05/18 20:50:29 by yohatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ int	main(int argc, char **argv)
 		free_struct(&table);
 		return (1);
 	}
-	// create_threads(&table);
-	// clean_all(&table);
+	create_threads(&table);
+	clean_all(&table);
 	free_struct(&table);
 	return (0);
 }

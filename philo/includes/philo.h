@@ -6,7 +6,7 @@
 /*   By: yohatana <yohatana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 15:08:30 by yohatana          #+#    #+#             */
-/*   Updated: 2025/05/18 20:43:34 by yohatana         ###   ########.fr       */
+/*   Updated: 2025/05/18 20:51:57 by yohatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct s_monitor
 	pthread_mutex_t	*dead_lock;
 	pthread_mutex_t	*table_lock;
 	bool			is_someone_died;
+	pthread_t		thread;
 }	t_monitor;
 
 typedef struct s_table

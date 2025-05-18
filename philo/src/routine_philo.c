@@ -6,7 +6,7 @@
 /*   By: yohatana <yohatana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 18:06:26 by yohatana          #+#    #+#             */
-/*   Updated: 2025/05/18 16:08:47 by yohatana         ###   ########.fr       */
+/*   Updated: 2025/05/18 20:56:15 by yohatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	*routine_philo(void *arg)
 {
 	t_philo	*philo;
 
+	printf("this is philo\n");
 	philo = (t_philo *)arg;
 	while (philo->table->is_ready != true)
 		;
