@@ -6,7 +6,7 @@
 /*   By: yohatana <yohatana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 15:08:22 by yohatana          #+#    #+#             */
-/*   Updated: 2025/05/18 20:50:29 by yohatana         ###   ########.fr       */
+/*   Updated: 2025/05/20 10:55:32 by yohatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,28 @@
 
 int	main(int argc, char **argv)
 {
-	t_table			table;
+	t_table			*table;
 
-	if (argc != 5 && argc != 6)
-	{
-		write(2, "invalid args count\n", 20);
+	table = (t_table *)ft_calloc(sizeof(t_table), 1);
+	if (!table)
+		return (write(2, "failed: create struct\n", 23), 1);
+	if (check_valid_argv(argc, argv))
 		return (1);
-	}
-	if (check_valid_argv(argv))
-		return (1);
-	if (create_struct(&table, argv))
+	if (create_struct(table, argv))
 	{
-		free_struct(&table);
+		free_struct(table);
 		write(2, "failed: create struct\n", 23);
 		return (1);
 	}
-	if (init_table(argv, &table))
+	if (init_table(argv, table))
 	{
 		write(2, "failed: init table data\n", 20);
-		clean_all(&table);
-		free_struct(&table);
+		clean_all(table);
+		free_struct(table);
 		return (1);
 	}
-	create_threads(&table);
-	clean_all(&table);
-	free_struct(&table);
+	create_threads(table);
+	clean_all(table);
+	free_struct(table);
 	return (0);
 }

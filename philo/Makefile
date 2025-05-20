@@ -6,7 +6,7 @@
 #    By: yohatana <yohatana@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/11 15:08:15 by yohatana          #+#    #+#              #
-#    Updated: 2025/05/18 19:38:41 by yohatana         ###   ########.fr        #
+#    Updated: 2025/05/20 10:18:24 by yohatana         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,11 +24,12 @@ SRCS =\
 		src/routine_monitor.c\
 		src/routine_philo.c\
 		src/create_struct.c\
-		src/free_struct.c
+		src/free_struct.c\
+		src/routine_philo_util.c
 OBJS = $(SRCS:.c=.o)
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g #-fsanitize=thread
 
 $(NAME): $(OBJS)
 	$(CC) $(CFLAG) -o $(NAME) $(OBJS)

@@ -6,7 +6,7 @@
 /*   By: yohatana <yohatana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 15:08:30 by yohatana          #+#    #+#             */
-/*   Updated: 2025/05/18 20:51:57 by yohatana         ###   ########.fr       */
+/*   Updated: 2025/05/20 10:21:52 by yohatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ typedef struct s_table
 }	t_table;
 
 // check_valid_argv
-int		check_valid_argv(char **argv);
+int		check_valid_argv(int argc, char **argv);
 
 // init
 int		init_table(char **argv, t_table *table);
@@ -84,10 +84,6 @@ void	clean_all(t_table *table);
 
 // struct
 int		create_struct(t_table *table, char **argv);
-// void	free_struct(t_table *table, \
-// 	pthread_mutex_t **forks, \
-// 	t_philo **philos, \
-// 	t_monitor *monitor);
 void	free_struct(t_table *table);
 void	free_philos(t_philo **philos);
 void	free_forks(pthread_mutex_t **forks);
@@ -95,6 +91,8 @@ void	free_forks(pthread_mutex_t **forks);
 // routine
 void	*routine_monitor(void *table);
 void	*routine_philo(void *arg);
+void	take_first_fork(t_philo *philo);
+void	take_second_fork(t_philo *philo);
 
 // utils
 int		ft_atoi(const char *str);

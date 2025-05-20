@@ -6,7 +6,7 @@
 /*   By: yohatana <yohatana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 17:46:07 by yohatana          #+#    #+#             */
-/*   Updated: 2025/05/18 20:55:26 by yohatana         ###   ########.fr       */
+/*   Updated: 2025/05/20 10:02:35 by yohatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void	*routine_monitor(void *arg)
 {
 	t_table	*table;
 
-	printf("this is monitor\n");
 	table = (t_table *)arg;
 	while (table->is_ready != true)
 		;

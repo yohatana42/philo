@@ -6,7 +6,7 @@
 /*   By: yohatana <yohatana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 15:29:02 by yohatana          #+#    #+#             */
-/*   Updated: 2025/05/11 16:29:24 by yohatana         ###   ########.fr       */
+/*   Updated: 2025/05/20 10:22:44 by yohatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,13 @@
 
 static int	check_arg_content(char **argv);
 
-int	check_valid_argv(char **argv)
+int	check_valid_argv(int argc, char **argv)
 {
+	if (argc != 5 && argc != 6)
+	{
+		write(2, "invalid args count\n", 20);
+		return (1);
+	}
 	if (check_arg_content(argv))
 		return (1);
 	if (ft_atoi(argv[1]) <= 0 || ft_atoi(argv[1]) > 200)

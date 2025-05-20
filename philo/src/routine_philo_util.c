@@ -1,53 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_struct.c                                      :+:      :+:    :+:   */
+/*   routine_philo_util.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yohatana <yohatana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/18 19:25:18 by yohatana          #+#    #+#             */
-/*   Updated: 2025/05/20 10:49:21 by yohatana         ###   ########.fr       */
+/*   Created: 2025/05/20 10:17:13 by yohatana          #+#    #+#             */
+/*   Updated: 2025/05/20 10:17:46 by yohatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-void	free_struct(t_table *table)
+void	take_first_fork(t_philo *philo)
 {
-	if (!table)
-		return ;
-	free_forks(table->forks);
-	free_philos(table->philos);
-	free(table->monitor);
-	free(table);
+	if (philo->id % 2 == 0)
+		pthread_mutex_lock(philo->r_fork);
+	else
+	{
+		ft_usleep(1);
+		pthread_mutex_lock(philo->l_fork);
+	}
+	print_log(philo->write_lock, philo, "has taken a fork");
 }
 
-void	free_forks(pthread_mutex_t **forks)
+void	take_second_fork(t_philo *philo)
 {
-	int	i;
-
-	i = 0;
-	if (!forks)
-		return ;
-	while (forks[i])
-	{
-		free(forks[i]);
-		i++;
-	}
-	free(forks);
-}
-
-void	free_philos(t_philo **philos)
-{
-	int	i;
-
-	if (!philos)
-		return ;
-	i = 0;
-	while (philos[i])
-	{
-		free(philos[i]);
-		i++;
-	}
-	free(philos);
+	if (philo->id % 2 == 0)
+		pthread_mutex_lock(philo->l_fork);
+	else
+		pthread_mutex_lock(philo->r_fork);
+	print_log(philo->write_lock, philo, "has taken a fork");
 }
