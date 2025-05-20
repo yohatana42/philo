@@ -6,7 +6,7 @@
 /*   By: yohatana <yohatana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 17:22:30 by yohatana          #+#    #+#             */
-/*   Updated: 2025/05/18 16:02:15 by yohatana         ###   ########.fr       */
+/*   Updated: 2025/05/20 14:19:59 by yohatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,10 @@ void	print_log(pthread_mutex_t *write_lock, t_philo *philo, char *str)
 {
 	size_t	timestamp;
 
+	pthread_mutex_lock(&philo->table->dead_lock);
 	if (philo->table->monitor->is_someone_died == true)
 		return ;
+	pthread_mutex_unlock(&philo->table->dead_lock);
 	pthread_mutex_lock(write_lock);
 	timestamp = get_current_time() - philo->table->start;
 	printf("%zu %d %s\n", timestamp, philo->id, str);
