@@ -6,7 +6,7 @@
 /*   By: yohatana <yohatana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 18:06:26 by yohatana          #+#    #+#             */
-/*   Updated: 2025/05/20 10:20:51 by yohatana         ###   ########.fr       */
+/*   Updated: 2025/05/20 11:06:52 by yohatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,16 @@ void	*routine_philo(void *arg)
 	t_philo	*philo;
 
 	philo = (t_philo *)arg;
-	while (philo->table->is_ready != true)
-		;
+	while (1)
+	{
+		pthread_mutex_lock(&philo->table->table_lock);
+		if (philo->table->is_ready == true)
+		{
+			pthread_mutex_unlock(&philo->table->table_lock);
+			break ;
+		}
+		pthread_mutex_unlock(&philo->table->table_lock);
+	}
 	while (!check_dead(philo))
 	{
 		eat(philo);

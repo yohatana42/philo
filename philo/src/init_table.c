@@ -6,7 +6,7 @@
 /*   By: yohatana <yohatana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 16:35:43 by yohatana          #+#    #+#             */
-/*   Updated: 2025/05/20 10:54:54 by yohatana         ###   ########.fr       */
+/*   Updated: 2025/05/20 11:21:20 by yohatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ static int	init_monitor(t_table *table);
 
 int	init_table(char **argv, t_table *table)
 {
-	printf("init table %p\n", table);
 	(void)argv;
 	table->is_ready = false;
 	if (pthread_mutex_init(&table->write_lock, NULL) != 0)

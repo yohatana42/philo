@@ -6,7 +6,7 @@
 /*   By: yohatana <yohatana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 17:46:07 by yohatana          #+#    #+#             */
-/*   Updated: 2025/05/20 10:02:35 by yohatana         ###   ########.fr       */
+/*   Updated: 2025/05/20 11:06:04 by yohatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,16 @@ void	*routine_monitor(void *arg)
 	t_table	*table;
 
 	table = (t_table *)arg;
-	while (table->is_ready != true)
-		;
+	while (1)
+	{
+		pthread_mutex_lock(&table->table_lock);
+		if (table->is_ready == true)
+		{
+			pthread_mutex_unlock(&table->table_lock);
+			break ;
+		}
+		pthread_mutex_unlock(&table->table_lock);
+	}
 	while (1)
 	{
 		if (is_someone_dead(table) || is_all_philo_full(table))

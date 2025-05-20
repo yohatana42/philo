@@ -6,7 +6,7 @@
 /*   By: yohatana <yohatana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 18:21:03 by yohatana          #+#    #+#             */
-/*   Updated: 2025/05/20 10:02:14 by yohatana         ###   ########.fr       */
+/*   Updated: 2025/05/20 11:04:49 by yohatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,9 @@ int	create_threads(t_table *table)
 		i++;
 	}
 	table->start = get_current_time();
+	pthread_mutex_lock(&table->table_lock);
 	table->is_ready = true;
+	pthread_mutex_unlock(&table->table_lock);
 	return (all_thread_join(table, table->monitor));
 }
 
