@@ -6,7 +6,7 @@
 /*   By: yohatana <yohatana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 19:17:48 by yohatana          #+#    #+#             */
-/*   Updated: 2025/05/20 10:55:12 by yohatana         ###   ########.fr       */
+/*   Updated: 2025/05/20 12:43:30 by yohatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,6 @@ static int	create_philos(t_table *table);
 
 int	create_struct(t_table *table, char **argv)
 {
-	// table = (t_table *)ft_calloc(sizeof(t_table), 1);
-	// if (!table)
-	// 	return (1);
 	table->num_of_philo = ft_atoi(argv[1]);
 	table->time_to_die = ft_atoi(argv[2]);
 	table->time_to_eat = ft_atoi(argv[3]);

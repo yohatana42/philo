@@ -6,7 +6,7 @@
 /*   By: yohatana <yohatana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 18:06:26 by yohatana          #+#    #+#             */
-/*   Updated: 2025/05/20 12:34:52 by yohatana         ###   ########.fr       */
+/*   Updated: 2025/05/20 12:40:25 by yohatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,13 @@ static void	eat(t_philo *philo)
 	}
 	take_second_fork(philo);
 	print_log(philo->write_lock, philo, "is eating");
+	ft_usleep(philo->table->time_to_eat);
 	pthread_mutex_lock(&philo->table->meal_lock);
 	philo->last_meal_time = get_current_time() - philo->table->start;
 	philo->count_eat = philo->count_eat + 1;
 	if (philo->count_eat == philo->table->num_of_philo_must_eat)
 		philo->full = true;
 	pthread_mutex_unlock(&philo->table->meal_lock);
-	ft_usleep(philo->table->time_to_eat);
 	pthread_mutex_unlock(philo->r_fork);
 	pthread_mutex_unlock(philo->l_fork);
 }
