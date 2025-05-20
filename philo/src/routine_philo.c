@@ -6,7 +6,7 @@
 /*   By: yohatana <yohatana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 18:06:26 by yohatana          #+#    #+#             */
-/*   Updated: 2025/05/20 11:06:52 by yohatana         ###   ########.fr       */
+/*   Updated: 2025/05/20 12:34:52 by yohatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	*routine_philo(void *arg)
 			break ;
 		}
 		pthread_mutex_unlock(&philo->table->table_lock);
+		ft_usleep(1);
 	}
 	while (!check_dead(philo))
 	{
