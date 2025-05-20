@@ -6,7 +6,7 @@
 /*   By: yohatana <yohatana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 15:08:30 by yohatana          #+#    #+#             */
-/*   Updated: 2025/05/20 10:21:52 by yohatana         ###   ########.fr       */
+/*   Updated: 2025/05/20 14:25:01 by yohatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,5 +102,6 @@ void	print_message(char *str, t_table *table);
 void	ft_usleep(size_t milliseconds);
 size_t	get_current_time(void);
 void	print_log(pthread_mutex_t *write_lock, t_philo *philo, char *str);
+int		ft_strcmp(char *str1, char *str2);
 
 #endif

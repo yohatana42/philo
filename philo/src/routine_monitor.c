@@ -6,7 +6,7 @@
 /*   By: yohatana <yohatana@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 17:46:07 by yohatana          #+#    #+#             */
-/*   Updated: 2025/05/20 12:36:00 by yohatana         ###   ########.fr       */
+/*   Updated: 2025/05/20 14:33:26 by yohatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,11 @@ static int	is_someone_dead(t_table *table)
 	{
 		pthread_mutex_lock(&table->meal_lock);
 		if (get_current_time() - \
-			table->start - table->philos[i]->last_meal_time \
-			>= (size_t)table->time_to_die)
+		table->start - table->philos[i]->last_meal_time \
+		>= (size_t)table->time_to_die)
 		{
-			pthread_mutex_lock(&table->dead_lock);
 			print_log(&table->write_lock, &*table->philos[i], "died");
+			pthread_mutex_lock(&table->dead_lock);
 			table->monitor->is_someone_died = true;
 			pthread_mutex_unlock(&table->dead_lock);
 			pthread_mutex_unlock(&table->meal_lock);
